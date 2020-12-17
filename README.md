@@ -1,3 +1,5 @@
+# [Download the latest version of Filmic Blender](https://github.com/sobotka/filmic-blender/archive/master.zip)
+
 # Who?
 
 This is a simple OpenColorIO configuration for intermediate to advanced imagers using Blender's Cycles raytracing engine.
@@ -16,7 +18,7 @@ Because the basic sRGB EOTF was never designed for rendering and should be avoid
 
 # How?
 
-1. Download this repository. Replace your current OpenColorIO configuration in Blender with this version.
+1. [Download the latest version of Filmic Blender](https://github.com/sobotka/filmic-blender/archive/master.zip). Replace your current OpenColorIO configuration in Blender with this version.
  1. The Blender OpenColorIO configuration directory is located in:
 
         BLENDER/bin/VERSIONNUMBER/datafiles/colormanagement
@@ -80,6 +82,10 @@ Given that images generated under Cycles are scene referred, many nodes in Blend
 There are a good number of nodes that work absolutely fine. For grading, it is highly encouraged to use the ASC CDL node, as it operates on scene referred imagery perfectly well. It is in the ***Color -> Color Balance*** node. Do **not** use the ***Lift, Gamma, Gain*** default as it is strictly a display referred formula and will break on scene referred imagery. Instead, change the drop down to ***ASC CDL*** and use the *Slope*, *Offset*, and *Power* controls to perform grading.
 
 Almost all of the Adobe PDF specification blend modes in the ***Mix*** node are also display referred and are broken for Cycles rendering. That includes but is not limited to Overlay, Screen, and other such modes.
+
+# Viewing in Other Applications
+
+If you wish to tag Filmic still imagea for properly colour managed viewers, an ICC profile that uses REC.709 primaries, white point, and specifies a 2.2 power function is appropriate. [Elle Stone has such a profile located in her GitHub](https://github.com/ellelstone/elles_icc_profiles/blob/master/profiles/sRGB-elle-V2-g22.icc). The canonized sRGB ICC profile is not a match. Simply assign the profile to your generated image. Do not convert.
 
 # Issues
 
