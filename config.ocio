@@ -22,16 +22,16 @@ roles:
   data: Non-Colour Data
   compositing_log: Filmic Log Encoding
   color_timing: Filmic Log Encoding
-  default_byte: sRGB OETF
+  default_byte: sRGB EOTF
   default_float: Linear
-  default_sequencer: sRGB OETF
-  color_picking: sRGB OETF
-  texture_paint: sRGB OETF
+  default_sequencer: sRGB EOTF
+  color_picking: sRGB EOTF
+  texture_paint: sRGB EOTF
   matte_paint: Filmic Log Encoding
 
 displays:
-  sRGB:
-    - !<View> {name: sRGB OETF, colorspace: sRGB OETF}
+  sRGB / BT.709:
+    - !<View> {name: sRGB EOTF, colorspace: sRGB EOTF}
     - !<View> {name: Non-Colour Data, colorspace: Non-Colour Data}
     - !<View> {name: Linear Raw, colorspace: Linear}
     - !<View> {name: Filmic Log Encoding Base, colorspace: Filmic Log Encoding}
@@ -56,8 +56,8 @@ displays:
 #    - !<View> {name: Filmic False Colour, colorspace: Filmic Log Encoding, look: +False Colour}
 #    - !<View> {name: Debug, colorspace: Debug}
 
-active_displays: [sRGB, BT.1886, Apple Display P3, None]
-#active_views: [Filmic Log Encoding Base, sRGB OETF, Non-Colour Data, Linear Raw, No View]
+active_displays: [sRGB / BT.709, BT.1886, Apple Display P3, None]
+#active_views: [Filmic Log Encoding Base, sRGB EOTF, Non-Colour Data, Linear Raw, No View]
 
 colorspaces:
   - !<ColorSpace>
@@ -116,12 +116,12 @@ colorspaces:
 #    to_reference: !<AllocationTransform> {allocation: lg2, vars: [-12.473931188, 12.526068812], direction: inverse}
 
   - !<ColorSpace>
-    name: sRGB OETF
+    name: sRGB EOTF
     family:
     equalitygroup:
     bitdepth: 32f
     description: |
-      sRGB specification display referred Optical-Electro Transfer Function.
+      sRGB specification display referred Optical-Electro Transfer Function. Enum name is wrong (should be sRGB OETF) because KISKA pipeline requires it unfortunately
     isdata: false
     allocation: uniform
     allocationvars: [0.0, 1.0]
